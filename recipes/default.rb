@@ -19,3 +19,43 @@
 #
 
 include_recipe 'chef-sugar::default'
+
+include_recipe 'rsyslog::server'
+
+include_recipe 'consul::default'
+
+include_recipe 'confd::default'
+
+include_recipe 'haproxy::default'
+
+remote_file '/usr/local/bin/consul-haproxy' do
+  source 'https://github.com/hashicorp/consul-haproxy/releases/download/v0.1.0/consul-haproxy_linux_amd64'
+  owner 'root'
+  group 'root'
+  mode 00755
+  not_if { File.exist?('/usr/local/bin/consul-haproxy') }
+end
+
+bash 'pull registrator' do
+  user 'root'
+  cwd '/tmp'
+  code <<-EOH
+    docker pull progrium/registrator
+  EOH
+  not_if 'docker images | grep registrator'
+end
+
+bash 'pull nginx' do
+  user 'root'
+  cwd '/tmp'
+  code <<-EOH
+    docker pull octohost/nginx
+  EOH
+  not_if 'docker images | grep nginx'
+end
+
+docker_container 'progrium/logspout' do
+  detach true
+  volume '/var/run/docker.sock:/tmp/docker.sock'
+  command 'syslog://127.0.0.1:514'
+end

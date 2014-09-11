@@ -6,23 +6,14 @@ Requirements
 
 ### Platform:
 
-*List supported platforms here*
-
-### Cookbooks:
-
-*List cookbook dependencies here*
-
-Attributes
-----------
-
-*List attributes here*
+* Ubuntu 14.04LTS
 
 Recipes
 -------
 
 ### octoregistrator::default
 
-*Explain what the recipe does here*
+Testing octohost, haproxy, confd, and registrator with a Consul backend.
 
 ### Packer Build
 
@@ -61,14 +52,11 @@ The cookbook provides the following Rake tasks:
     rake food_extra                   # Run extra Foodcritic rulesets
     rake integration                  # Alias for kitchen:all
     rake kitchen:all                  # Run all test instances
-    rake kitchen:default-ubuntu-1204  # Run default-ubuntu-1204 test instance
     rake kitchen:default-ubuntu-1404  # Run default-ubuntu-1404 test instance
     rake knife_solo                   # Usage: rake knife_solo user={user} ip={ip.address.goes.here}
     rake lint                         # Lint Chef cookbooks
     rake rubocop                      # Run rubocop tests
     rake spec                         # Run ChefSpec examples
-    rake tailor                       # Run tailor tests
-    rake taste                        # Run taste tests
     rake test                         # Run all tests
 
 License and Author

@@ -18,4 +18,9 @@
 # limitations under the License.
 #
 
-# Set meaningful node attributes here
+default['rsyslog']['port'] = 514
+default['rsyslog']['protocol'] = 'udp'
+
+default['confd']['url'] = 'https://github.com/kelseyhightower/confd/releases/download/v0.5.0/confd-0.5.0-darwin-amd64'
+
+default['haproxy']['incoming_port'] = 8080

@@ -6,11 +6,14 @@ provisioner:
   name: chef_solo
 
 platforms:
-  - name: ubuntu-12.04
-  - name: ubuntu-14.04
+  - name: octohost
+    driver:
+      box: darron/octohost
+      vm_hostname: octohost
 
 suites:
   - name: default
     run_list:
+      - recipe[apt]
       - recipe[octoregistrator::default]
     attributes:
